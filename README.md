@@ -54,6 +54,8 @@ GLOSARIUM.md       istilah hari 3 dan 4
 
 Hari 3 dan 4 tidak mengulang konsep model bahasa dan RAG dari hari 1 dan 2. Fokusnya hal baru: tool, agen, memori, persetujuan manusia, guardrail, multi-agen, MCP, RAG agentik, dan mini project. Dua bab bonus (Streaming Agen di hari 3 dan Agen SQL di hari 4) bersifat opsional: tidak dibutuhkan bab lain dan dikerjakan bila waktu tersisa. Mulai dari [hari3/00-persiapan](./hari3/00-persiapan/README.md).
 
+**Memakai Google Colab (tanpa VS Code).** Semua bab, latihan, dan solusi hari 3 dan 4 juga tersedia sebagai notebook Colab, tanpa instalasi apa pun di laptop. Mulai dari [Persiapan di Colab](https://colab.research.google.com/github/dteti-workshop/workshop-genai-migas/blob/main/colab/hari3/00-persiapan.ipynb), lalu pilih bab pada tabel di [colab/README.md](./colab/README.md).
+
 | Hari | Bab | Judul |
 |---|---|---|
 | 3 | 00 | [Persiapan Hari 3 dan 4](./hari3/00-persiapan/README.md) |
