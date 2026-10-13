@@ -1,0 +1,32 @@
+# Dependency untuk notebook Google Colab hari 3 dan 4 (diuji dengan Python 3.12, seperti runtime Colab).
+# Sama dengan requirements.txt di root repo, dengan dua pengecualian:
+#   - ipykernel         : sudah dipasang Colab; memasang ulang dapat merusak kernel yang sedang berjalan
+#   - langgraph-cli     : hanya untuk LangGraph Studio (bab 11, opsional), tidak berjalan di Colab
+# Paket repo (common, migas_shared) dipasang bersamaan lewat opsi -e . (wajib: server MCP berjalan sebagai
+# subproses dan hanya dapat mengimpor migas_shared bila paketnya terpasang). Pasang dengan:
+#   pip install -q -r colab/requirements-colab.txt -e .
+openai>=1.40,<4
+python-dotenv>=1.0
+pydantic>=2.7,<3
+pandas>=2.2
+numpy>=1.26
+matplotlib>=3.8
+pyyaml>=6.0
+streamlit>=1.40
+
+# Hari 2 - RAG (pypdf dikunci agar hasil parsing PDF sama dengan labsheet)
+langchain-core>=1.1,<2
+langchain-openai>=1.1,<2
+langchain-community>=0.4,<1
+langchain-text-splitters>=1.0,<2
+langchain-chroma>=1.0,<2
+chromadb>=1.0,<2
+fastembed>=0.7
+rank-bm25>=0.2.2
+pypdf==6.19.0
+
+# Hari 3 dan 4 - LangChain dan LangGraph
+langchain>=1.4,<2
+langgraph>=1.2,<2
+langchain-mcp-adapters>=0.3,<0.4
+langgraph-checkpoint-sqlite>=3.1

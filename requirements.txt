@@ -1,4 +1,4 @@
-# Workshop GenAI Migas — dependensi (diuji dengan Python 3.11, Oktober 2026)
+# Workshop GenAI Migas — dependensi hari 1 sampai 4 (diuji dengan Python 3.11 dan 3.12, Oktober 2026)
 # Install:  pip install -r requirements.txt
 openai>=1.40,<4
 python-dotenv>=1.0
@@ -11,8 +11,8 @@ streamlit>=1.40
 ipykernel>=6.29
 
 # Hari 2 — RAG
-langchain-core>=1.0,<2
-langchain-openai>=1.0,<2
+langchain-core>=1.1,<2
+langchain-openai>=1.1,<2
 langchain-community>=0.4,<1
 langchain-text-splitters>=1.0,<2
 langchain-chroma>=1.0,<2
@@ -21,5 +21,14 @@ fastembed>=0.7
 rank-bm25>=0.2.2
 pypdf>=5.0
 
-# Paket lokal (modul common/)
+# Hari 3 dan 4 — LangChain dan LangGraph
+# Bab 4 sampai 8 dan kedua bab bonus memakai fitur langchain 1.4 (ToolRuntime, keputusan "respond" pada persetujuan, pemicu summarization)
+# dan langgraph 1.2 (checkpointer, interrupt, streaming)
+langchain>=1.4,<2
+langgraph>=1.2,<2
+langchain-mcp-adapters>=0.3,<0.4          # bab 9 (MCP)
+langgraph-checkpoint-sqlite>=3.1          # bab 5 (memori persisten)
+langgraph-cli[inmem]>=0.4                 # bab 11 (opsional: LangGraph Studio lewat `langgraph dev`)
+
+# Paket lokal (modul common/ dan migas_shared/)
 -e .

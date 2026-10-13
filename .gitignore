@@ -1,14 +1,30 @@
 .env
 .venv/
 venv/
+ENV/
 __pycache__/
 *.pyc
 .cache/
+.runtime/
 models/
 chroma_db/
+.chroma/
 outputs/
+*.db
+*.sqlite
+antrean_persetujuan.json
+.langgraph_api/
 .ipynb_checkpoints/
 .DS_Store
+Thumbs.db
 *.egg-info/
+build/
+dist/
 data/docs/uploads/
 .backup_reset/
+
+# Materi pengembangan (tidak untuk peserta): alat build, kunci latihan, panduan, solusi
+scratchpad/
+
+# Jejak crash Git Bash
+*.stackdump

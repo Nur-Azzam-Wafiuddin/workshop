@@ -1,0 +1,6 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "saya": "./hari4/11-mini-project/aplikasi/studio.py:saya"
+  }
+}
