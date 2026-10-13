@@ -65,7 +65,7 @@ Langkah rinci untuk keduanya ada di [LAMPIRAN.md](./LAMPIRAN.md). Kode hari 3 da
 
 ### Langkah 1: Perbarui Repo
 
-Dari root repo (folder `workshop-agent-migas`), ambil materi terbaru. Kalau Anda belum punya repo ini, clone dulu seperti di hari 1 (Unit 1).
+Dari root repo (folder `workshop`), ambil materi terbaru. Kalau Anda belum punya repo ini, clone dulu seperti di hari 1 (Unit 1).
 
 ```bash
 git pull

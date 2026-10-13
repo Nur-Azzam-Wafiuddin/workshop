@@ -40,7 +40,7 @@ def get_client(profile: str | None = None) -> OpenAI:
     p = config.get_profile(profile)
     headers = {}
     if p.is_openrouter:
-        headers = {"HTTP-Referer": "https://github.com/dteti-workshop/workshop-genai-migas", "X-Title": "Workshop GenAI Migas"}
+        headers = {"HTTP-Referer": "https://github.com/Nur-Azzam-Wafiuddin/workshop", "X-Title": "Workshop GenAI Migas"}
     return OpenAI(base_url=p.base_url, api_key=p.api_key or "none", default_headers=headers, timeout=120, max_retries=0)
 
 
