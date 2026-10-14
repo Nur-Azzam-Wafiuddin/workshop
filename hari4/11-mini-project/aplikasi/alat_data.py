@@ -577,15 +577,20 @@ def ubah_setpoint_vsd(kode_sumur: str, frekuensi_hz: int) -> str:
 TULIS = {"buat_work_order", "tutup_work_order", "usulkan_tindakan_korektif", "kirim_notifikasi_hse",
          "catat_serah_terima", "ubah_setpoint_vsd"}
 
+# Keempat use case memakai data dan dokumen perusahaan yang sama, jadi tool-nya sengaja saling terhubung lewat kode yang sama:
+# kode sumur (SR-020) juga kode aset pada work order, nomor insiden menghubungkan data insiden dengan tindakan korektif,
+# dan SOP, manual, serta laporan dipakai bersama. Dengan begitu satu pertanyaan bisa melintasi beberapa tool (multistep),
+# misalnya dari laporan harian ke produksi sumur ke riwayat work order. Tool tulis tetap hanya di use case pemiliknya.
 KATALOG: dict[str, list] = {
     "Operasi": [laporan_harian, ringkasan_produksi_bulanan, bandingkan_produksi, hari_berkejadian,
-                cek_status_sumur, daftar_sumur, produksi_sumur, hitung_water_cut, catat_serah_terima],
-    "Perawatan": [riwayat_work_order, statistik_kegagalan, aset_downtime_tertinggi, cari_dokumen_sop,
-                  cari_dokumen_manual, buat_work_order, tutup_work_order],
-    "HSE": [cari_insiden, ringkasan_insiden, cari_dokumen_sop, cari_dokumen_laporan, cari_dokumen_investigasi,
-            usulkan_tindakan_korektif, kirim_notifikasi_hse],
+                cek_status_sumur, daftar_sumur, produksi_sumur, riwayat_work_order, cari_dokumen_sop,
+                hitung_water_cut, catat_serah_terima],
+    "Perawatan": [riwayat_work_order, statistik_kegagalan, aset_downtime_tertinggi, cek_status_sumur, daftar_sumur,
+                  produksi_sumur, cari_dokumen_sop, cari_dokumen_manual, buat_work_order, tutup_work_order],
+    "HSE": [cari_insiden, ringkasan_insiden, cek_status_sumur, riwayat_work_order, cari_dokumen_sop,
+            cari_dokumen_laporan, cari_dokumen_investigasi, usulkan_tindakan_korektif, kirim_notifikasi_hse],
     "Engineering": [cari_dokumen_sop, cari_dokumen_manual, cari_dokumen_laporan, konversi_satuan, hitung_water_cut,
-                    cek_status_sumur, daftar_sumur, produksi_sumur, ubah_setpoint_vsd],
+                    cek_status_sumur, daftar_sumur, produksi_sumur, riwayat_work_order, ubah_setpoint_vsd],
 }
 
 

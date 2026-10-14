@@ -41,6 +41,9 @@ from alat_data import (
     riwayat_work_order,
     statistik_kegagalan,
     aset_downtime_tertinggi,
+    cek_status_sumur,
+    daftar_sumur,
+    produksi_sumur,
     cari_dokumen_sop,
     cari_dokumen_manual,
     buat_work_order,
@@ -51,6 +54,9 @@ TOOLS = [
     riwayat_work_order,
     statistik_kegagalan,
     aset_downtime_tertinggi,
+    cek_status_sumur,
+    daftar_sumur,
+    produksi_sumur,
     cari_dokumen_sop,
     cari_dokumen_manual,
     buat_work_order,
@@ -85,6 +91,7 @@ agen = create_agent(
     system_prompt="""Anda asisten perencana pemeliharaan lapangan migas.
 Untuk riwayat dan statistik, pakai riwayat_work_order, statistik_kegagalan, dan aset_downtime_tertinggi.
 Untuk prosedur dan manual, pakai cari_dokumen_sop dan cari_dokumen_manual, lalu beri sitasi [DOC_ID bagian].
+Untuk status, daftar, dan produksi harian sumur, pakai cek_status_sumur, daftar_sumur, dan produksi_sumur. Kode sumur sama dengan kode aset pada work order; pakai produksi_sumur untuk menilai dampak kegagalan terhadap produksi.
 Buat atau tutup work order HANYA bila pengguna memintanya secara jelas, dan dalam kasus itu langsung panggil tool-nya.
 Jangan mengarang nomor work order atau angka downtime.
 Jawab hanya dari hasil tool. Jangan mengarang angka, nomor, atau kejadian.
