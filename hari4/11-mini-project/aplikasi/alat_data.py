@@ -366,7 +366,7 @@ def kirim_notifikasi_hse(penerima: str, pesan: str) -> str:
 
 @tool(parse_docstring=True)
 def laporan_harian(tanggal: str) -> str:
-    """Tampilkan laporan produksi harian GS-SR1: minyak, air, gas, jumlah sumur aktif, deferred, dan kejadian.
+    """Tampilkan laporan produksi harian GS-SR1: minyak, air, gas, jumlah sumur aktif, deferred (produksi tertunda akibat gangguan), dan kejadian.
 
     Args:
         tanggal: Tanggal format YYYY-MM-DD pada Juli 2026, contoh "2026-07-14".
@@ -383,7 +383,7 @@ def laporan_harian(tanggal: str) -> str:
 
 @tool(parse_docstring=True)
 def ringkasan_produksi_bulanan() -> str:
-    """Ringkas produksi GS-SR1 selama Juli 2026: rata-rata minyak dan air, water cut, total deferred, dan hari berkejadian."""
+    """Ringkas produksi GS-SR1 selama Juli 2026: rata-rata minyak dan air, water cut, total deferred (produksi tertunda), dan hari berkejadian."""
     d = _harian()
     minyak, air = d["oil_bopd"].mean(), d["water_bwpd"].mean()
     kejadian = d[d["event"].notna()]
@@ -407,7 +407,7 @@ def catat_serah_terima(catatan: str) -> str:
 
 @tool(parse_docstring=True)
 def bandingkan_produksi(tanggal_a: str, tanggal_b: str) -> str:
-    """Bandingkan laporan produksi harian GS-SR1 pada dua tanggal: selisih minyak, air, gas, dan deferred (tanggal_b dikurangi tanggal_a).
+    """Bandingkan laporan produksi harian GS-SR1 pada dua tanggal: selisih minyak, air, gas, dan deferred (produksi tertunda akibat gangguan), tanggal_b dikurangi tanggal_a.
 
     Args:
         tanggal_a: Tanggal pembanding format YYYY-MM-DD pada Juli 2026, contoh "2026-07-10".
@@ -425,7 +425,7 @@ def bandingkan_produksi(tanggal_a: str, tanggal_b: str) -> str:
 
 @tool(parse_docstring=True)
 def hari_berkejadian(maks: int = 10) -> str:
-    """Daftar hari pada Juli 2026 yang punya kejadian khusus di laporan harian GS-SR1, beserta deferred produksinya.
+    """Daftar hari pada Juli 2026 yang punya kejadian khusus di laporan harian GS-SR1, beserta deferred (produksi tertunda) pada hari itu.
 
     Args:
         maks: Jumlah hari yang ditampilkan (1 sampai 15).

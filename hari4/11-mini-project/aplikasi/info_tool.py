@@ -15,21 +15,21 @@ Yang ditulis di sini hanya yang tidak bisa dibaca dari kode: untuk apa tool dipa
 INFO = {
     # ------------------------------------------------------------------ Operasi
     "laporan_harian": {
-        "fungsi": "Membuka laporan produksi satu hari di gathering station GS-SR1: minyak, air, gas, jumlah sumur aktif, deferred, dan kejadian hari itu.",
+        "fungsi": "Membuka laporan produksi satu hari di gathering station GS-SR1: minyak, air, gas, jumlah sumur aktif, deferred (produksi tertunda akibat gangguan), dan kejadian hari itu.",
         "sumber": "File CSV laporan harian Juli 2026 (`data/eval/daily_gs_sr1_2026-07.csv`).",
         "hasil": "Satu kalimat ringkasan hari itu. Bila tanggal tidak ada di data, hasilnya pesan bahwa laporan tidak ada beserta rentang tanggal yang tersedia.",
         "contoh": {"tanggal": "2026-07-14"},
         "tanya": ["Apa yang terjadi di GS-SR1 pada 14 Juli 2026?"],
     },
     "ringkasan_produksi_bulanan": {
-        "fungsi": "Meringkas produksi GS-SR1 selama Juli 2026: rata-rata minyak dan air, water cut, total deferred, dan jumlah hari berkejadian.",
+        "fungsi": "Meringkas produksi GS-SR1 selama Juli 2026: rata-rata minyak dan air, water cut, total deferred (produksi tertunda), dan jumlah hari berkejadian.",
         "sumber": "File CSV laporan harian Juli 2026.",
         "hasil": "Satu paragraf angka ringkasan satu bulan. Tidak butuh parameter.",
         "contoh": {},
         "tanya": ["Ringkas produksi GS-SR1 selama Juli 2026."],
     },
     "bandingkan_produksi": {
-        "fungsi": "Membandingkan laporan harian dua tanggal: selisih minyak, air, gas, dan deferred.",
+        "fungsi": "Membandingkan laporan harian dua tanggal: selisih minyak, air, gas, dan deferred (produksi tertunda akibat gangguan).",
         "sumber": "File CSV laporan harian Juli 2026.",
         "hasil": "Satu kalimat selisih (tanggal B dikurangi tanggal A). Bila salah satu tanggal tidak ada, hasilnya pesan yang menyebut tanggal itu.",
         "contoh": {"tanggal_a": "2026-07-10", "tanggal_b": "2026-07-14"},
