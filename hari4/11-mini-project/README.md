@@ -106,7 +106,7 @@ Katalog di bab ini sudah menyiapkan data dan tool untuk empat use case. Tool tul
 
 Data sumur untuk ketiga tool sumur (`cek_status_sumur`, `daftar_sumur`, `produksi_sumur`) dan `ubah_setpoint_vsd` ada di folder `data/field/`: `sumur.csv` memuat 196 sumur Seruni, Kenanga, dan Melati dengan status per 31 Juli 2026, dan `produksi_sumur_2026-07.csv` memuat produksi harian tiap sumur selama Juli 2026. Jumlah produksi semua sumur Seruni pada satu hari sama dengan laporan harian GS-SR1, jadi hasil `laporan_harian` dan `produksi_sumur` bisa saling dicocokkan. Untuk empat tool pencarian dokumen, korpus dokumen hari 2 sampai 4 (`data/docs`, 13 dokumen) ditambah 18 dokumen khusus bab ini di `data/docs_bab11` (SOP keselamatan dan operasi, manual ESP, pumping unit, dan level control valve, laporan bulanan Kenanga dan Melati, lessons learned, dan satu laporan investigasi), sehingga ada 31 dokumen. Dokumen tambahan dipisah supaya bab lain tidak terpengaruh, dan indeksnya dibangun terpisah pada pencarian pertama (sekitar setengah menit). Semua datanya fiktif.
 
-Anda tidak harus mengikuti satu baris tabel. Boleh menggabungkan tool dari beberapa use case, atau menulis tool sendiri (lihat [latihan.md](./latihan.md)). Hasil pilihan kelompok ditulis di [lembar rancangan](./lembar_rancangan.md), satu halaman saja.
+Anda tidak harus mengikuti satu baris tabel. Boleh menggabungkan tool dari beberapa use case, atau menulis tool sendiri. Hasil pilihan kelompok ditulis di [lembar rancangan](./lembar_rancangan.md), satu halaman saja.
 
 ---
 
@@ -846,19 +846,6 @@ Aplikasi ini sengaja sederhana. Sebelum agen dipakai di operasi nyata, hal-hal b
 
 ---
 
-## Latihan
-
-Siap berlatih? Kerjakan tantangan di [latihan.md](./latihan.md)!
-
-Latihan mencakup:
-
-1. **Lembar Rancangan** - Memilih use case dengan tiga pertanyaan
-2. **Rakit Agen dari Katalog** - Mengisi TODO: tool, prompt, interrupt, dan checkpointer
-3. **Variasi Prompt dan Uji** - Membandingkan versi agen dengan pertanyaan dari Panduan uji
-4. **Tool Sendiri dan Riwayat yang Bertahan** (Bonus) - Menulis tool baru dan mengganti `InMemorySaver`
-
----
-
 ## Sumber Tambahan
 
 - [Dokumentasi Streamlit: Membangun aplikasi chat](https://docs.streamlit.io/develop/tutorials/chat-and-llm-apps/build-conversational-apps) - Elemen `st.chat_message` dan `st.chat_input`
@@ -916,7 +903,7 @@ Latihan mencakup:
 
 **Penyebab**: notebook dimulai ulang atau runtime Colab terputus. `InMemorySaver` hanya menyimpan di memori proses.
 
-**Perbaikan**: ini perilaku yang diharapkan. Untuk riwayat yang bertahan, kerjakan tantangan bonus di [latihan.md](./latihan.md).
+**Perbaikan**: ini perilaku yang diharapkan. Untuk riwayat yang bertahan, ganti `InMemorySaver` dengan checkpointer yang menyimpan ke database, seperti di [bab 5](../../hari3/05-memori-agen/README.md).
 
 ### Pertanyaan pertama yang memakai `cari_dokumen_*` terasa lama
 
