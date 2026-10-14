@@ -75,7 +75,7 @@ hari4/11-mini-project/
   lembar_rancangan.md  lembar rancangan (diisi sendiri atau bersama kelompok)
 ```
 
-Semua aplikasi dinyalakan dari sel notebook dengan `peluncur.buka(...)`, dan tautannya muncul di bawah sel. Di Google Colab tautan itu membuka aplikasi di tab baru. Sebelum menyusun apa pun, jalankan notebook dari atas dan coba penjelajah.
+Semua aplikasi dinyalakan dari sel notebook dengan `peluncur.buka(...)`, dan tautannya muncul di bawah sel. Di Google Colab tautan itu membuka aplikasi di tab baru, dan aplikasinya juga tampil langsung di bawah sel. Sebelum menyusun apa pun, jalankan notebook dari atas dan coba penjelajah.
 
 > **Pertama kali memakai Streamlit di komputer sendiri**, terminal bisa menanyakan email. Tekan Enter untuk melewatinya. Dari notebook, pertanyaan itu tidak muncul.
 
@@ -185,7 +185,7 @@ print("Indeks dokumen siap.")
 # %% [markdown]
 # ## Langkah 2 - Menjalankan penjelajah
 # Sel di bawah menyalakan aplikasi di port 8501, lalu menampilkan tautan untuk membukanya di tab baru (di Google Colab
-# tautannya muncul sebagai teks biru di bawah sel). Menjalankan sel ini lagi tidak membuat aplikasi ganda.
+# tautan muncul di bawah sel, dan aplikasinya juga tampil di dalam sel; tab baru lebih lega untuk dipakai). Menjalankan sel ini lagi tidak membuat aplikasi ganda.
 
 # %%
 peluncur.buka("penjelajah")

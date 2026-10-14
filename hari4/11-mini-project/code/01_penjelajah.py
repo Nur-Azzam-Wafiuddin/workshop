@@ -32,7 +32,7 @@ print("Indeks dokumen siap.")
 # %% [markdown]
 # ## Langkah 2 - Menjalankan penjelajah
 # Sel di bawah menyalakan aplikasi di port 8501, lalu menampilkan tautan untuk membukanya di tab baru (di Google Colab
-# tautannya muncul sebagai teks biru di bawah sel). Menjalankan sel ini lagi tidak membuat aplikasi ganda.
+# tautan muncul di bawah sel, dan aplikasinya juga tampil di dalam sel; tab baru lebih lega untuk dipakai). Menjalankan sel ini lagi tidak membuat aplikasi ganda.
 
 # %%
 peluncur.buka("penjelajah")

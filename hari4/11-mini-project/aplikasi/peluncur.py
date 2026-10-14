@@ -60,12 +60,32 @@ def _di_colab() -> bool:
     return False
 
 
+def _tampilkan_colab(info: dict) -> None:
+    """Tautan ke tab baru, ditambah aplikasinya di dalam sel (iframe).
+
+    `serve_kernel_port_as_window` ditandai Colab "may stop working", jadi dipakai hanya sebagai cadangan. Tautan dibuat dari
+    alamat proxy port yang sama yang dipakai Colab untuk iframe.
+    """
+    from google.colab import output
+    from IPython.display import HTML, display
+
+    port, judul = info["port"], info["judul"].lower()
+    try:
+        alamat = output.eval_js(f"google.colab.kernel.proxyPort({port})")
+    except Exception:  # noqa: BLE001 - tanpa tautan, iframe di bawah tetap bisa dipakai
+        alamat = None
+    if alamat:
+        display(HTML(f'<a href="{alamat}" target="_blank">Buka {judul} pada tab baru</a>'))
+    if hasattr(output, "serve_kernel_port_as_iframe"):
+        output.serve_kernel_port_as_iframe(port, height="700")
+    else:
+        output.serve_kernel_port_as_window(port, anchor_text=f"Buka {judul} pada tab baru")
+
+
 def _tampilkan(nama: str) -> None:
     info = APLIKASI[nama]
     if _di_colab():
-        from google.colab import output
-
-        output.serve_kernel_port_as_window(info["port"], anchor_text=f"Buka {info['judul'].lower()} pada tab baru")
+        _tampilkan_colab(info)
         return
     alamat = f"http://localhost:{info['port']}"
     print(f"{info['judul']} berjalan di {alamat}")
