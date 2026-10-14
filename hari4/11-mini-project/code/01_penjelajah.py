@@ -2,7 +2,7 @@
 # # Contoh 1: Menjelajahi Tool dan Prompt
 # Jalankan sel satu per satu dengan Shift+Enter, atau seluruh file: `python hari4/11-mini-project/code/01_penjelajah.py`
 #
-# Dua keping pertama agen adalah tool dan prompt. Sebelum memilihnya, kenali dulu bahannya lewat aplikasi Streamlit
+# Dua komponen pertama agen adalah tool dan prompt. Sebelum memilihnya, kenali dulu bahannya lewat aplikasi Streamlit
 # **Penjelajah** (`aplikasi/penjelajah.py`):
 #
 # - tab **Tool**: 24 tool dengan ilustrasi, parameter, hasil, contoh pemakaian, dan formulir untuk memanggilnya sendiri
@@ -61,6 +61,6 @@ print(a.riwayat_work_order.invoke({"asset_id": "SR-020", "maks": 2}))
 # ## Ide Utama
 # - Agen hanya setajam tool dan deskripsinya: tool yang salah atau deskripsinya kabur tidak bisa diselamatkan agen sebesar apa pun
 # - Uji tool lebih dulu dengan `.invoke({...})` tanpa model, seperti yang dilakukan tombol **Jalankan tool**
-# - Tool BACA hanya mengambil data. Tool TULIS mengubah sesuatu dan di sistem nyata harus dipasangi persetujuan manusia (keping 3)
+# - Tool BACA hanya mengambil data. Tool TULIS mengubah sesuatu dan di sistem nyata harus dipasangi persetujuan manusia (komponen 3)
 # - Hak akses ditentukan oleh tool yang Anda pasang: hanya agen dengan `cari_dokumen_investigasi` yang bisa membaca laporan investigasi
 # - Prompt dibangun dari tiga bahan: peran, aturan yang menyebut tool dengan namanya, dan gaya jawaban

@@ -1,4 +1,4 @@
-"""Bank variasi prompt untuk keping puzzle ke-2 (INSTRUKSI agen).
+"""Bank variasi prompt untuk komponen ke-2 (INSTRUKSI agen).
 
 Anda boleh memakainya apa adanya, mengubahnya, atau menulis INSTRUKSI sendiri dari nol. Isinya tiga bagian:
 

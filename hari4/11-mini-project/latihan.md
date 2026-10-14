@@ -2,7 +2,7 @@
 
 ## Gambaran Umum
 
-Tugas bab ini adalah mini project itu sendiri, dikerjakan secara mandiri atau berkelompok: memilih use case, menjelajahi tool dan prompt, merakit agen sederhana dari tiga keping puzzle (tool, prompt, interrupt) ditambah checkpointer di sel notebook, lalu mengobrol dengannya dan mengujinya. Semua bagian yang sudah Anda pelajari (tool, agen, memori, streaming, persetujuan manusia, guardrails, dan pencarian dokumen) dipakai lagi di sini.
+Tugas bab ini adalah mini project itu sendiri, dikerjakan secara mandiri atau berkelompok: memilih use case, menjelajahi tool dan prompt, merakit agen sederhana dari tiga komponen (tool, prompt, interrupt) ditambah checkpointer di sel notebook, lalu mengobrol dengannya dan mengujinya. Semua bagian yang sudah Anda pelajari (tool, agen, memori, streaming, persetujuan manusia, guardrails, dan pencarian dokumen) dipakai lagi di sini.
 
 ## Prasyarat
 

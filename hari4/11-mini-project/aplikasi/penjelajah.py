@@ -133,7 +133,7 @@ def halaman_rincian(nama: str):
         st.write(ket["fungsi"])
         st.caption(f"Sumber: {ket['sumber']}")
         if tulis:
-            st.warning("Tool TULIS. Di agen nyata, tool seperti ini harus berhenti menunggu persetujuan manusia (keping puzzle 3). "
+            st.warning("Tool TULIS. Di agen nyata, tool seperti ini harus berhenti menunggu persetujuan manusia (komponen 3). "
                        "Di bab ini ia hanya mencatat ke memori, jadi aman dicoba.")
 
     tab_ring, tab_sumber, tab_model = st.tabs(["Parameter dan coba sendiri", "Sumber data", "Yang dilihat model"])
@@ -267,7 +267,7 @@ def tab_pilih():
     tulis = [n for n in pilih if a.jenis_tool(TOOL[n]) == "tulis"]
     impor = "from alat_data import (\n" + "".join(f"    {n},\n" for n in pilih) + ")"
     kode = impor + "\n\nTOOLS = [\n" + "".join(f"    {n},\n" for n in pilih) + "]"
-    st.markdown("##### Keping 1: TOOLS")
+    st.markdown("##### Komponen 1: TOOLS")
     st.code(kode, language="python")
     if tulis:
         st.warning("Tool TULIS yang Anda pilih: " + ", ".join(f"`{n}`" for n in tulis) + ". Tool tulis mengubah sesuatu. Anda sendiri yang "

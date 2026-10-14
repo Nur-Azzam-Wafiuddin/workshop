@@ -38,7 +38,7 @@ peluncur.buka("uji")
 # 4. Perbaiki di sel TODO Contoh 3, daftarkan ulang (versi baru), lalu ulangi pertanyaan yang sama. Apakah kriterianya kini terpenuhi?
 # 5. Coba satu **Eksperimen** di bagian bawah Panduan uji dan bandingkan dua versi agen.
 #
-# Kriteria yang gagal bukan kesalahan Anda. Ia menunjukkan bagian mana dari tiga keping yang perlu diperbaiki.
+# Kriteria yang gagal bukan kesalahan Anda. Ia menunjukkan bagian mana dari tiga komponen yang perlu diperbaiki.
 
 # %% [markdown]
 # ## Langkah 4 - Menghentikan aplikasi
@@ -52,5 +52,5 @@ peluncur.hentikan()
 # - Uji agen dengan banyak pertanyaan yang mewakili perilaku yang Anda inginkan, bukan dengan satu jawaban yang tampak bagus
 # - Kriteria yang bisa dilihat mata (tool apa, argumen apa, isi jawaban) cukup untuk menemukan sebagian besar kelemahan
 # - Pertanyaan negatif sama pentingnya: data tidak ada, di luar cakupan, dan tindakan tulis tanpa persetujuan
-# - Setiap kegagalan menunjuk ke satu dari tiga keping: tool, prompt, atau persetujuan
+# - Setiap kegagalan menunjuk ke satu dari tiga komponen: tool, prompt, atau persetujuan
 # - Untuk pemakaian nyata, pertanyaan nyata pengguna dikumpulkan menjadi kumpulan uji yang diperiksa otomatis

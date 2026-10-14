@@ -8,7 +8,7 @@ Data berasal dari folder data/ (fiktif), sama dengan yang dipakai di hari 1 dan 
   sumur       : data/field/sumur.csv  (196 sumur Seruni, Kenanga, Melati; status dan produksi per 2026-07-31)
                 data/field/produksi_sumur_2026-07.csv  (produksi harian semua sumur; jumlah sumur Seruni sama dengan laporan harian GS-SR1)
 
-Ini KATALOG keping puzzle: tool untuk empat use case (Operasi, Perawatan, HSE, Engineering). Lihat KATALOG di
+Ini KATALOG komponen agen: tool untuk empat use case (Operasi, Perawatan, HSE, Engineering). Lihat KATALOG di
 bagian bawah file, atau jalankan code/01_katalog_tool.py.
 
 Tool BACA mengembalikan teks ringkas. Tool TULIS (nama-namanya di TULIS) hanya mencatat ke daftar CATATAN_TINDAKAN
@@ -569,7 +569,7 @@ def ubah_setpoint_vsd(kode_sumur: str, frekuensi_hz: int) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Katalog keping puzzle
+# Katalog tool
 # ---------------------------------------------------------------------------
 
 # Nama tool yang mengubah sesuatu. Semuanya hanya mencatat ke CATATAN_TINDAKAN, tetapi di sistem nyata

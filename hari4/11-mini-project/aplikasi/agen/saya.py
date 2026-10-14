@@ -3,9 +3,9 @@
 Peserta merakit agen di sel notebook dan mendaftarkannya dengan kerangka.daftarkan_agen(...). File ini memuat susunan yang
 sama sebagai modul, dibaca oleh studio.py (perintah `langgraph dev`) dan oleh fasilitator.
 
-  KEPING 1  TOOLS       : tool apa yang boleh dipakai agen (pilih dari KATALOG di alat_data.py, atau tulis sendiri)
-  KEPING 2  INSTRUKSI   : peran dan aturan agen (salin dan ubah dari prompt_bank.py, atau tulis sendiri)
-  KEPING 3  PERSETUJUAN : tool mana yang berhenti menunggu manusia (interrupt), dan keputusan apa yang diizinkan
+  KOMPONEN 1  TOOLS       : tool apa yang boleh dipakai agen (pilih dari KATALOG di alat_data.py, atau tulis sendiri)
+  KOMPONEN 2  INSTRUKSI   : peran dan aturan agen (salin dan ubah dari prompt_bank.py, atau tulis sendiri)
+  KOMPONEN 3  PERSETUJUAN : tool mana yang berhenti menunggu manusia (interrupt), dan keputusan apa yang diizinkan
 
 Nama lain yang dibaca dari file agen:
 
@@ -22,9 +22,9 @@ from langchain.agents.middleware import HumanInTheLoopMiddleware
 
 from prompt_bank import PERTANYAAN, susun_prompt
 
-# Keping yang sudah terpasang di bawah adalah contoh agen Perawatan yang hanya membaca. Ganti dengan use case Anda.
+# Komponen yang sudah terpasang di bawah adalah contoh agen Perawatan yang hanya membaca. Ganti dengan use case Anda.
 from alat_data import aset_downtime_tertinggi, riwayat_work_order, statistik_kegagalan
-# from alat_data import buat_work_order, tutup_work_order            # tool TULIS Perawatan: wajib dipasangi KEPING 3
+# from alat_data import buat_work_order, tutup_work_order            # tool TULIS Perawatan: wajib dipasangi KOMPONEN 3
 # from alat_data import cari_dokumen_sop, cari_dokumen_manual        # pencarian SOP dan manual (satu tool per jenis dokumen)
 # from alat_data import KATALOG                                      # semua tool per use case: KATALOG["HSE"], dst.
 
@@ -32,14 +32,14 @@ JUDUL = "Agen Saya"
 PENGANTAR = "Titik awal mini project: susun tool, prompt, dan aturan persetujuan sesuai use case Anda."
 CONTOH_PERTANYAAN = PERTANYAAN["Perawatan"]["baca"] + PERTANYAAN["Perawatan"]["multi"]
 
-# KEPING 1 - Tool yang boleh dipakai agen.
+# KOMPONEN 1 - Tool yang boleh dipakai agen.
 TOOLS = [riwayat_work_order, statistik_kegagalan, aset_downtime_tertinggi]
 
-# KEPING 2 - Peran dan aturan agen. susun_prompt(use_case, gaya) menggabungkan peran, aturan tool, dan gaya jawaban.
+# KOMPONEN 2 - Peran dan aturan agen. susun_prompt(use_case, gaya) menggabungkan peran, aturan tool, dan gaya jawaban.
 # Gaya yang tersedia: minimal, ketat, ramah, tabel, sitasi, hati_hati (satu nama atau daftar). Atau tulis sendiri INSTRUKSI = """..."""
 INSTRUKSI = susun_prompt("Perawatan", "ketat")
 
-# KEPING 3 - Tool yang harus disetujui manusia sebelum berjalan. Kosong berarti semua tool berjalan bebas.
+# KOMPONEN 3 - Tool yang harus disetujui manusia sebelum berjalan. Kosong berarti semua tool berjalan bebas.
 # Contoh mengaktifkan (tool harus ada di TOOLS):
 #   {"buat_work_order": {"allowed_decisions": ["approve", "edit", "reject"]}}
 # Pilihan yang diizinkan per tool: approve (setuju), edit (ubah argumen), reject (tolak). Untuk tindakan yang

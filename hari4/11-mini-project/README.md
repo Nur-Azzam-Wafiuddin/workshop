@@ -1,8 +1,8 @@
-# Mini Project: Menyusun Agen dari Keping Puzzle
+# Mini Project: Menyusun Agen dari Tiga Komponen
 
-Di bab terakhir ini Anda tidak belajar fitur baru. Anda memakai semua yang sudah dipelajari (tool, agen, memori, streaming, persetujuan manusia, guardrails, dan pencarian dokumen) untuk menyusun **agen sederhana, secara mandiri atau berkelompok**, seperti merakit puzzle.
+Di bab terakhir ini Anda tidak belajar fitur baru. Anda memakai semua yang sudah dipelajari (tool, agen, memori, streaming, persetujuan manusia, guardrails, dan pencarian dokumen) untuk menyusun **agen sederhana, secara mandiri atau berkelompok**.
 
-Kami menyediakan kepingnya, dan semuanya dikerjakan dari satu notebook. Ada **katalog 24 tool** untuk empat use case (Operasi, Perawatan, HSE, Engineering), **bank variasi prompt**, dan **tiga aplikasi Streamlit**: **Penjelajah** untuk mengenal tool dan prompt, **Aplikasi agen** untuk mengobrol dengan agen Anda (lengkap dengan jejak kerja agen dan formulir persetujuan), dan **Panduan uji** berisi pertanyaan beserta kriteria berhasil. Tugas Anda (atau kelompok Anda): memilih use case, lalu menyusun satu agen dari tiga keping: **tool**, **prompt**, dan **interrupt** (persetujuan manusia). Agen ditulis di sel notebook, tanpa mengedit file `.py`.
+Kami menyediakan komponennya, dan semuanya dikerjakan dari satu notebook. Ada **katalog 24 tool** untuk empat use case (Operasi, Perawatan, HSE, Engineering), **bank variasi prompt**, dan **tiga aplikasi Streamlit**: **Penjelajah** untuk mengenal tool dan prompt, **Aplikasi agen** untuk mengobrol dengan agen Anda (lengkap dengan jejak kerja agen dan formulir persetujuan), dan **Panduan uji** berisi pertanyaan beserta kriteria berhasil. Tugas Anda (atau kelompok Anda): memilih use case, lalu menyusun satu agen dari tiga komponen: **tool**, **prompt**, dan **interrupt** (persetujuan manusia). Agen ditulis di sel notebook, tanpa mengedit file `.py`.
 
 ## Prasyarat
 
@@ -20,24 +20,22 @@ Setelah bab ini Anda bisa:
 - Menentukan tool tulis mana yang diberi interrupt, dan keputusan apa yang diizinkan reviewer
 - Merakit tool, prompt, interrupt, dan checkpointer menjadi satu agen dengan `create_agent()`
 - Membaca jejak kerja agen (Pikir, Aksi, Observasi) untuk memahami mengapa agen menjawab seperti itu
-- Menguji agen dengan pertanyaan berkriteria, termasuk pertanyaan negatif, lalu memperbaiki keping yang menjadi penyebabnya
+- Menguji agen dengan pertanyaan berkriteria, termasuk pertanyaan negatif, lalu memperbaiki komponen yang menjadi penyebabnya
 
 ---
 
-## Analogi: Merakit Lego dari Papan Dasar
+## Komponen yang Disediakan
 
-**Bayangkan satu set Lego dengan papan dasar yang sudah jadi.** Papan itu punya jalan, lampu, dan pagar yang sama untuk semua orang. Yang Anda lakukan adalah memilih keping dari kotak, mengikuti buku petunjuk, dan menempelkan stiker "cek dulu ke kakak" pada keping yang berbahaya, misalnya keping tombol lampu utama.
+| Komponen | Isi |
+|----------|-----|
+| Tiga aplikasi Streamlit dan `kerangka.py` | Sudah jadi, tidak diubah |
+| Katalog tool di `alat_data.py` | Dijelajahi lewat aplikasi Penjelajah |
+| `TOOLS` | Fungsi yang boleh dipanggil agen (pilihan Anda) |
+| `system_prompt` | Peran dan aturan agen |
+| `interrupt_on` | Tool yang menunggu persetujuan manusia |
+| Panduan uji | Pertanyaan dan kriteria yang Anda nilai sendiri |
 
-| Lego | Mini project |
-|------|--------------|
-| Papan dasar | Tiga aplikasi Streamlit dan `kerangka.py`, tidak diubah |
-| Kotak keping | Katalog tool di `alat_data.py`, dijelajahi lewat aplikasi Penjelajah |
-| Keping yang Anda pilih | `TOOLS`: fungsi yang boleh dipanggil agen |
-| Buku petunjuk | `system_prompt`: peran dan aturan agen |
-| Stiker "cek dulu ke kakak" | `interrupt_on`: tool yang menunggu manusia |
-| Uji coba sebelum dipajang | Panduan uji: pertanyaan dan kriteria yang Anda nilai sendiri |
-
-Use case yang berbeda tetap memakai papan yang sama, sehingga hasilnya bisa dibandingkan dengan adil.
+Semua use case memakai aplikasi dan kerangka yang sama, sehingga hasilnya bisa dibandingkan dengan adil.
 
 ---
 
@@ -95,7 +93,7 @@ Use case yang baik bukan yang paling canggih. Cukup tiga pertanyaan yang dijawab
 
 *Gambar 2. Tiga syarat use case: data, integrasi, keamanan*
 
-Use case yang berisiko tidak harus dibuang. Kalau kelompok tetap memilihnya, setiap tindakan tulis wajib lewat persetujuan manusia (keping ke-3), dan sebaiknya reviewer tidak boleh mengubah argumennya. Sebaliknya, use case yang datanya belum ada sebaiknya ditunda, sebaik apa pun idenya.
+Use case yang berisiko tidak harus dibuang. Kalau kelompok tetap memilihnya, setiap tindakan tulis wajib lewat persetujuan manusia (komponen ke-3), dan sebaiknya reviewer tidak boleh mengubah argumennya. Sebaliknya, use case yang datanya belum ada sebaiknya ditunda, sebaik apa pun idenya.
 
 Katalog di bab ini sudah menyiapkan data dan tool untuk empat use case. Tool tulis ditandai karena inilah yang perlu interrupt:
 
@@ -112,11 +110,11 @@ Anda tidak harus mengikuti satu baris tabel. Boleh menggabungkan tool dari beber
 
 ---
 
-## Bagian 2: Tiga Keping Puzzle
+## Bagian 2: Tiga Komponen Agen
 
 ---
 
-### Keping 1: Tool
+### Komponen 1: Tool
 
 Tool adalah apa yang bisa dilakukan agen. Tool yang salah atau deskripsinya kabur tidak bisa diselamatkan oleh agen sebesar apa pun, jadi **uji tool langsung dengan `.invoke()` sebelum memberikannya ke agen**. Tool tulis di bab ini hanya mencatat ke memori (`CATATAN_TINDAKAN`), tidak mengubah sistem nyata, sehingga aman dicoba berulang kali.
 
@@ -155,7 +153,7 @@ riwayat_work_order.invoke({"asset_id": "SR-020", "maks": 2})   # panggil langsun
 # # Contoh 1: Menjelajahi Tool dan Prompt
 # Jalankan sel satu per satu dengan Shift+Enter, atau seluruh file: `python hari4/11-mini-project/code/01_penjelajah.py`
 #
-# Dua keping pertama agen adalah tool dan prompt. Sebelum memilihnya, kenali dulu bahannya lewat aplikasi Streamlit
+# Dua komponen pertama agen adalah tool dan prompt. Sebelum memilihnya, kenali dulu bahannya lewat aplikasi Streamlit
 # **Penjelajah** (`aplikasi/penjelajah.py`):
 #
 # - tab **Tool**: 24 tool dengan ilustrasi, parameter, hasil, contoh pemakaian, dan formulir untuk memanggilnya sendiri
@@ -214,7 +212,7 @@ print(a.riwayat_work_order.invoke({"asset_id": "SR-020", "maks": 2}))
 # ## Ide Utama
 # - Agen hanya setajam tool dan deskripsinya: tool yang salah atau deskripsinya kabur tidak bisa diselamatkan agen sebesar apa pun
 # - Uji tool lebih dulu dengan `.invoke({...})` tanpa model, seperti yang dilakukan tombol **Jalankan tool**
-# - Tool BACA hanya mengambil data. Tool TULIS mengubah sesuatu dan di sistem nyata harus dipasangi persetujuan manusia (keping 3)
+# - Tool BACA hanya mengambil data. Tool TULIS mengubah sesuatu dan di sistem nyata harus dipasangi persetujuan manusia (komponen 3)
 # - Hak akses ditentukan oleh tool yang Anda pasang: hanya agen dengan `cari_dokumen_investigasi` yang bisa membaca laporan investigasi
 # - Prompt dibangun dari tiga bahan: peran, aturan yang menyebut tool dengan namanya, dan gaya jawaban
 ```
@@ -244,7 +242,7 @@ SR-020: 5 work order, total downtime 25.0 jam. Terbaru:
 
 ---
 
-### Keping 2: Prompt
+### Komponen 2: Prompt
 
 `system_prompt` adalah peran dan aturan agen, berupa **teks biasa**. Anda bebas menulisnya dari nol. Untuk memulai cepat, tab **Prompt** di penjelajah menyediakan tiga bahan, menyusunnya menjadi satu teks, dan Anda tinggal menyalinnya ke `system_prompt=` pada `create_agent(...)`. Tidak ada fungsi khusus yang dipanggil di notebook: yang dibaca model hanyalah teksnya.
 
@@ -263,11 +261,11 @@ SR-020: 5 work order, total downtime 25.0 jam. Terbaru:
 
 Teks hasil penjelajah boleh diubah: tambah kalimat sendiri, hapus aturan yang tidak perlu, atau tulis ulang seluruhnya. Aturan yang menyebut sebuah tool hanya berguna bila tool itu ada di `tools`. Prompt yang menyuruh agen memakai tool yang tidak ia miliki membuat agen bingung atau berpura-pura. Penjelajah memberi peringatan bila prompt menyebut tool yang belum Anda pilih.
 
-> **Prompt tidak selalu berlaku bagi model.** Aturan "jangan memanggil tool tulis tanpa diminta" hanya imbauan. Yang benar-benar menjamin sebuah tindakan tidak berjalan sebelum disetujui adalah keping ke-3.
+> **Prompt tidak selalu berlaku bagi model.** Aturan "jangan memanggil tool tulis tanpa diminta" hanya imbauan. Yang benar-benar menjamin sebuah tindakan tidak berjalan sebelum disetujui adalah komponen ke-3.
 
 ---
 
-### Keping 3: Interrupt
+### Komponen 3: Interrupt
 
 `HumanInTheLoopMiddleware` dipasang pada parameter `middleware` di `create_agent(...)`. Parameter `interrupt_on` berisi kamus dari nama tool ke keputusan yang diizinkan reviewer. Tool yang ada di kamus ini berhenti menunggu manusia sebelum berjalan (mekanismenya dari [bab 6](../../hari3/06-persetujuan-manusia/README.md)). Tool yang tidak ada di kamus berjalan bebas. Anda sendiri yang menuliskannya, dan Anda sendiri yang mengamati akibatnya di aplikasi agen.
 
@@ -774,7 +772,7 @@ peluncur.buka("uji")
 # 4. Perbaiki di sel TODO Contoh 3, daftarkan ulang (versi baru), lalu ulangi pertanyaan yang sama. Apakah kriterianya kini terpenuhi?
 # 5. Coba satu **Eksperimen** di bagian bawah Panduan uji dan bandingkan dua versi agen.
 #
-# Kriteria yang gagal bukan kesalahan Anda. Ia menunjukkan bagian mana dari tiga keping yang perlu diperbaiki.
+# Kriteria yang gagal bukan kesalahan Anda. Ia menunjukkan bagian mana dari tiga komponen yang perlu diperbaiki.
 
 # %% [markdown]
 # ## Langkah 4 - Menghentikan aplikasi
@@ -788,14 +786,14 @@ peluncur.hentikan()
 # - Uji agen dengan banyak pertanyaan yang mewakili perilaku yang Anda inginkan, bukan dengan satu jawaban yang tampak bagus
 # - Kriteria yang bisa dilihat mata (tool apa, argumen apa, isi jawaban) cukup untuk menemukan sebagian besar kelemahan
 # - Pertanyaan negatif sama pentingnya: data tidak ada, di luar cakupan, dan tindakan tulis tanpa persetujuan
-# - Setiap kegagalan menunjuk ke satu dari tiga keping: tool, prompt, atau persetujuan
+# - Setiap kegagalan menunjuk ke satu dari tiga komponen: tool, prompt, atau persetujuan
 # - Untuk pemakaian nyata, pertanyaan nyata pengguna dikumpulkan menjadi kumpulan uji yang diperiksa otomatis
 ```
 
 ### Cara Kerjanya
 
 1. **Kriteria ditulis sebagai hal yang bisa dilihat mata**: tool apa, argumen apa, dan isi jawabannya. Anda tidak perlu menulis kunci jawaban sendiri, dan tidak ada penilaian otomatis yang bisa keliru.
-2. **Kriteria yang tidak terpenuhi menunjuk satu dari tiga keping.** Agen memanggil tool yang salah atau lupa memanggil: periksa deskripsi tool dan prompt. Agen mengarang saat data tidak ada: perketat prompt. Tool tulis berjalan tanpa formulir: periksa `interrupt_on`. Agen tidak bisa menjawab karena tool yang dibutuhkan tidak terpasang: tambah tool.
+2. **Kriteria yang tidak terpenuhi menunjuk satu dari tiga komponen.** Agen memanggil tool yang salah atau lupa memanggil: periksa deskripsi tool dan prompt. Agen mengarang saat data tidak ada: perketat prompt. Tool tulis berjalan tanpa formulir: periksa `interrupt_on`. Agen tidak bisa menjawab karena tool yang dibutuhkan tidak terpasang: tambah tool.
 3. **Pertanyaan negatif sama pentingnya dengan pertanyaan positif.** Pertanyaan "data tidak ada" dan "di luar cakupan" memeriksa bahwa agen tidak mengarang.
 4. **Hak akses mengikuti tool.** Pertanyaan tentang laporan investigasi muncul dua kali: sekali untuk agen yang punya `cari_dokumen_investigasi`, sekali untuk agen yang tidak punya. Yang kedua seharusnya mengaku tidak menemukannya.
 5. **Eksperimen untuk memahami agen.** Di bagian bawah Panduan uji ada tiga eksperimen: mengganti gaya prompt, menghapus `HumanInTheLoopMiddleware`, dan mengurangi satu tool. Daftarkan ulang agen, ajukan pertanyaan yang sama pada dua versi, lalu bandingkan jejaknya.
@@ -821,7 +819,7 @@ Aplikasi ini sengaja sederhana. Sebelum agen dipakai di operasi nyata, hal-hal b
 ## Poin Penting
 
 - **Use case layak bila datanya ada, integrasinya terjangkau, dan akibat kesalahannya terkendali**; tidak perlu skor
-- **Agen = tiga keping ditambah memori**: `tools`, `system_prompt`, `middleware` (`HumanInTheLoopMiddleware`), dan `checkpointer`, disatukan oleh `create_agent()`
+- **Agen = tiga komponen ditambah memori**: `tools`, `system_prompt`, `middleware` (`HumanInTheLoopMiddleware`), dan `checkpointer`, disatukan oleh `create_agent()`
 - **Uji tool dulu tanpa model** dengan `.invoke()`, baru berikan ke agen
 - **Model hanya melihat nama, deskripsi, dan skema tool**, bukan kodenya
 - **Prompt mengubah perilaku**, tetapi hanya imbauan; yang menahan tindakan berisiko adalah interrupt
@@ -837,12 +835,12 @@ Aplikasi ini sengaja sederhana. Sebelum agen dipakai di operasi nyata, hal-hal b
 
 - Use case dipilih dengan tiga pertanyaan: data, integrasi, keamanan.
 - Penjelajah: mengenal tool, menyusun prompt, dan memilih tool untuk disalin.
-- Keping 1: tool dipilih dari katalog (atau ditulis sendiri) dan diuji dengan `.invoke()`.
-- Keping 2: system prompt berupa teks, disusun dari peran, aturan tool, dan gaya jawaban, lalu disalin ke `create_agent()`.
-- Keping 3: `HumanInTheLoopMiddleware(interrupt_on={...})` menahan tool tulis dengan keputusan yang diizinkan.
+- Komponen 1: tool dipilih dari katalog (atau ditulis sendiri) dan diuji dengan `.invoke()`.
+- Komponen 2: system prompt berupa teks, disusun dari peran, aturan tool, dan gaya jawaban, lalu disalin ke `create_agent()`.
+- Komponen 3: `HumanInTheLoopMiddleware(interrupt_on={...})` menahan tool tulis dengan keputusan yang diizinkan.
 - `create_agent()` menyatukan semuanya dengan checkpointer; `daftarkan_agen()` menampilkannya di aplikasi agen.
 - Jejak Pikir, Aksi, dan Observasi menunjukkan bagaimana agen sampai pada jawabannya.
-- Panduan uji: pertanyaan dengan kriteria yang dinilai sendiri, dan setiap kegagalan menunjuk ke salah satu keping.
+- Panduan uji: pertanyaan dengan kriteria yang dinilai sendiri, dan setiap kegagalan menunjuk ke salah satu komponen.
 
 *Use case berbeda memakai aplikasi yang sama, dan mutunya dibuktikan oleh pengamatan yang teliti, bukan oleh satu jawaban yang tampak bagus.*
 

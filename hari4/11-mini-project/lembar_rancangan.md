@@ -28,9 +28,9 @@ Jawab dengan jujur, satu atau dua kalimat. Penjelasan dan contohnya ada di [bab 
 | **Integrasi**: tool dari katalog mana yang dipakai, dan tool baru apa yang perlu ditulis? | *contoh: `riwayat_work_order` dan `buat_work_order` dari katalog; tidak perlu tool baru* |
 | **Keamanan**: apa akibatnya kalau agen salah, dan tindakan mana yang bisa mengubah sesuatu? | *contoh: work order salah aset; hanya `buat_work_order` yang menulis, dan wajib persetujuan* |
 
-## 4. Tiga keping puzzle
+## 4. Tiga komponen agen
 
-### Keping 1: Tool
+### Komponen 1: Tool
 
 | Tool | Membaca atau menulis | Sumber data | Dari katalog atau ditulis sendiri |
 |------|----------------------|-------------|-----------------------------------|
@@ -40,7 +40,7 @@ Jawab dengan jujur, satu atau dua kalimat. Penjelasan dan contohnya ada di [bab 
 
 Dokumen yang perlu dicari agen, bila ada (tool `cari_dokumen_sop`, `cari_dokumen_manual`, `cari_dokumen_laporan`, atau `cari_dokumen_investigasi`):
 
-### Keping 2: Prompt
+### Komponen 2: Prompt
 
 | Isian | Jawaban kelompok |
 |-------|------------------|
@@ -48,7 +48,7 @@ Dokumen yang perlu dicari agen, bila ada (tool `cari_dokumen_sop`, `cari_dokumen
 | Kalimat yang ditambahkan atau diubah sendiri | *contoh: "Selalu sebut nomor aset di awal jawaban."* |
 | Gaya lain yang dicoba dan hasil perbandingannya | |
 
-### Keping 3: Interrupt
+### Komponen 3: Interrupt
 
 | Tool tulis | Keputusan yang diizinkan (approve, edit, reject) | Alasan |
 |------------|--------------------------------------------------|--------|
