@@ -110,7 +110,7 @@ Jumlah teks maksimum (dihitung dalam token) yang bisa dibaca model dalam satu pe
 ## K
 
 ### Kasus uji (test case)
-*Bab 11.* Satu pertanyaan beserta hasil yang diharapkan (tool yang dipanggil, kata kunci jawaban, efek pada data). Diperiksa oleh kode dan dijalankan berulang setiap kali agen diubah.
+*Bab 11.* Satu pertanyaan beserta kriteria berhasil (tool yang dipanggil, isi jawaban, efek pada data). Di bab 11 kriteria dinilai sendiri oleh peserta dengan membaca jejak agen; di pemakaian nyata diperiksa kode dan dijalankan berulang setiap kali agen diubah.
 
 ### Katalog tool
 *Bab 11.* Kumpulan tool siap pakai per use case (Operasi, Perawatan, HSE, Engineering) di `alat_data.py`, diberi tanda baca atau tulis. Peserta memilih dari katalog, atau menulis tool sendiri, sebagai keping puzzle pertama agen.
@@ -141,7 +141,7 @@ Jumlah teks maksimum (dihitung dalam token) yang bisa dibaca model dalam satu pe
 *Bab 6, 7.* Kode tambahan yang berjalan pada titik tertentu dalam loop agen (sebelum agen, di sekitar panggilan model, di sekitar panggilan tool, setelah agen) untuk menambah perilaku tanpa mengubah tool atau prompt.
 
 ### Mini project
-*Bab 11.* Prototipe agen sederhana yang disusun berkelompok untuk satu use case dari tiga keping (tool, prompt, interrupt), dijalankan di template aplikasi chat, lalu diuji dan didemokan.
+*Bab 11.* Prototipe agen sederhana yang disusun berkelompok untuk satu use case dari tiga keping (tool, prompt, interrupt), dirakit di sel notebook, dijalankan di aplikasi Streamlit, lalu diuji dengan panduan uji dan didemokan.
 
 ### MoC (Management of Change)
 *Bab 10, 11.* Proses resmi untuk menilai dan menyetujui perubahan pada peralatan, prosedur atau organisasi sebelum perubahan itu dijalankan.
@@ -175,7 +175,7 @@ Jumlah teks maksimum (dihitung dalam token) yang bisa dibaca model dalam satu pe
 *Bab 10.* Memberikan chunk dokumen yang relevan, ditemukan lewat pencarian, kepada model untuk dijadikan dasar jawaban.
 
 ### ReAct
-*Bab 3.* Loop agen: Reason (berpikir), Act (memakai tool), Observe (membaca hasil), lalu ulangi.
+*Bab 3, 11.* Loop agen: Reason (berpikir), Act (memakai tool), Observe (membaca hasil), lalu ulangi. Di bab 11 setiap langkah tampil sebagai Pikir, Aksi, dan Observasi pada jejak agen di aplikasi.
 
 ### Read-only connection (koneksi hanya-baca)
 *Bab bonus Agen SQL.* Koneksi database yang menolak penulisan. Perlindungan terkuat untuk agen SQL.

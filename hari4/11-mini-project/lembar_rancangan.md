@@ -7,7 +7,7 @@ Salin lembar ini, isi sendiri atau bersama kelompok sebelum menyusun agen. Satu 
 | Isian | Jawaban kelompok |
 |-------|------------------|
 | Nama kelompok dan anggota | |
-| Nama agen (nama file di `aplikasi/agen/`) | *contoh: `kelompok_a`* |
+| Nama agen (`JUDUL` pada sel pendaftaran) | *contoh: `Asisten Perencana`* |
 
 ## 2. Use case
 
@@ -15,7 +15,7 @@ Salin lembar ini, isi sendiri atau bersama kelompok sebelum menyusun agen. Satu 
 |-------|------------------|
 | Bidang | Operations, Maintenance, HSE, atau Engineering |
 | Masalah yang diselesaikan, satu kalimat | *contoh: perencana menghabiskan 30 menit membuka riwayat work order sebelum menyusun pekerjaan baru* |
-| Pengguna agen dan perannya | *contoh: perencana pemeliharaan (peran `engineer`)* |
+| Pengguna agen dan perannya | *contoh: perencana pemeliharaan* |
 | Hasil yang diharapkan pengguna | *contoh: ringkasan riwayat aset dalam kurang dari satu menit, dan draf work order* |
 
 ## 3. Data, integrasi, keamanan
@@ -38,7 +38,7 @@ Jawab dengan jujur, satu atau dua kalimat. Penjelasan dan contohnya ada di [bab 
 | | | | |
 | | | | |
 
-Dokumen yang perlu dicari agen (SOP, manual, laporan), bila ada:
+Dokumen yang perlu dicari agen, bila ada (tool `cari_dokumen_sop`, `cari_dokumen_manual`, `cari_dokumen_laporan`, atau `cari_dokumen_investigasi`):
 
 ### Keping 2: Prompt
 
@@ -57,26 +57,26 @@ Dokumen yang perlu dicari agen (SOP, manual, laporan), bila ada:
 
 ## 5. Risiko dan guardrail
 
-| Risiko bila agen salah | Pagar yang dipasang (prompt, interrupt, batas tool, peran dokumen) |
+| Risiko bila agen salah | Pagar yang dipasang (prompt, interrupt, batas tool, pilihan tool dokumen) |
 |------------------------|--------------------------------------------------------------------|
 | *contoh: work order dibuat untuk aset yang salah* | *persetujuan manusia, tampilkan argumen sebelum disetujui* |
 | | |
 
-## 6. Kasus uji (minimal 5 untuk `KASUS_UJI`)
+## 6. Pertanyaan uji (minimal 5, dari Panduan uji atau buatan sendiri)
 
-Sertakan sedikitnya: satu pertanyaan yang dijawab dari data, satu pertanyaan yang harus dijawab "tidak ada" atau ditolak, satu tool tulis yang ditolak (`tercatat: 0`), dan satu tool tulis yang disetujui (`tercatat: 1`). Pertanyaan bisa diambil dari `PERTANYAAN` di `prompt_bank.py`.
+Sertakan sedikitnya: satu pertanyaan yang dijawab dari data, satu pertanyaan yang harus dijawab "tidak ada" atau ditolak, satu tool tulis yang ditolak, dan satu tool tulis yang disetujui. Pertanyaan dan kriterianya ada di aplikasi Panduan uji, dan Anda yang menilai hasilnya.
 
-| No | Pertanyaan | Tool yang harus dipanggil | Kata yang harus muncul atau efek yang diperiksa |
-|----|------------|---------------------------|------------------------------------------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
+| No | Pertanyaan | Tool yang diharapkan dipanggil | Kriteria berhasil yang dilihat di jejak | Hasil (terpenuhi atau tidak, dan penyebabnya) |
+|----|------------|--------------------------------|------------------------------------------|-----------------------------------------------|
+| 1 | | | | |
+| 2 | | | | |
+| 3 | | | | |
+| 4 | | | | |
+| 5 | | | | |
 
 ## 7. Kriteria berhasil
 
-Tuliskan satu kalimat yang bisa diperiksa, misalnya: "Semua kasus uji lolos dan satu permintaan work order bisa diubah reviewer sebelum disetujui."
+Tuliskan satu kalimat yang bisa diperiksa, misalnya: "Semua kriteria pada lima pertanyaan uji terpenuhi dan satu permintaan work order bisa diubah reviewer sebelum disetujui."
 
 ---
 

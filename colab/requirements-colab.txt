@@ -12,7 +12,7 @@ pandas>=2.2
 numpy>=1.26
 matplotlib>=3.8
 pyyaml>=6.0
-streamlit>=1.40
+streamlit>=1.65
 
 # Hari 2 - RAG (pypdf dikunci agar hasil parsing PDF sama dengan labsheet)
 langchain-core>=1.1,<2
