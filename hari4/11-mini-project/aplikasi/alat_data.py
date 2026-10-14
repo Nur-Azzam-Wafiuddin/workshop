@@ -15,6 +15,7 @@ Tool BACA mengembalikan teks ringkas. Tool TULIS (nama-namanya di TULIS) hanya m
 di memori. Tidak ada sistem nyata yang diubah, sehingga aman dicoba. Agen yang memakai tool tulis sebaiknya dipasangi
 persetujuan manusia (lihat solusi/agen_contoh/perawatan.py).
 """
+import threading
 from functools import lru_cache
 from typing import Literal
 
@@ -66,14 +67,25 @@ def muat_dokumen() -> list:
     return hasil
 
 
-@lru_cache(maxsize=1)
+_kunci_retriever = threading.Lock()
+_retriever: rp.HybridRetriever | None = None
+
+
 def retriever_bab11() -> rp.HybridRetriever:
-    """Retriever hibrida atas korpus bab 11. Indeks dibangun pada panggilan pertama (beberapa detik) dan dipakai ulang."""
-    chunks = rp.chunk_documents(muat_dokumen(), "markdown", 800, chunk_overlap=100)
-    store = rp._open_store(NAMA_INDEKS)
-    if set(store.get(include=[])["ids"]) != {c.metadata["chunk_id"] for c in chunks}:
-        store = rp.build_index(chunks, NAMA_INDEKS)
-    return rp.HybridRetriever(store, chunks)
+    """Retriever hibrida atas korpus bab 11. Indeks dibangun pada panggilan pertama (beberapa detik) dan dipakai ulang.
+
+    Dikunci karena beberapa sesi (aplikasi agen di thread kernel, aplikasi lain) bisa memanggilnya bersamaan, dan membuka
+    koleksi Chroma yang sama dari dua thread sekaligus bisa gagal ("Could not connect to tenant").
+    """
+    global _retriever
+    with _kunci_retriever:
+        if _retriever is None:
+            chunks = rp.chunk_documents(muat_dokumen(), "markdown", 800, chunk_overlap=100)
+            store = rp._open_store(NAMA_INDEKS)
+            if set(store.get(include=[])["ids"]) != {c.metadata["chunk_id"] for c in chunks}:
+                store = rp.build_index(chunks, NAMA_INDEKS)
+            _retriever = rp.HybridRetriever(store, chunks)
+        return _retriever
 
 
 @lru_cache(maxsize=1)
