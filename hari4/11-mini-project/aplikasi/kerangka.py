@@ -166,10 +166,16 @@ def jalankan(agen, masukan, thread_id: str) -> Iterator[Peristiwa]:
     masukan : {"messages": [...]} untuk giliran baru, atau Command(resume=...) untuk melanjutkan setelah interrupt.
     Setelah iterator habis, panggil persetujuan_menunggu() untuk tahu apakah agen berhenti menunggu manusia.
     """
+    # Id pesan yang sudah tampil: yang ada di state sebelum giliran ini (mis. pesan yang ditulis ulang node persetujuan
+    # setelah Command(resume=...)) dan yang teksnya sudah dikeluarkan potong demi potong dari model.
+    state = agen.get_state(_config(thread_id))
+    sudah_tampil: set[str] = {m.id for m in (state.values.get("messages", []) if state.values else []) if m.id}
     for mode, data in agen.stream(masukan, _config(thread_id), stream_mode=["messages", "updates"]):
         if mode == "messages":
             chunk, meta = data
             if isinstance(chunk, AIMessageChunk) and meta.get("langgraph_node") == "model" and chunk.text:
+                if chunk.id:
+                    sudah_tampil.add(chunk.id)
                 yield Peristiwa("teks", chunk.text)
             continue
         for node, pembaruan in data.items():
@@ -179,6 +185,10 @@ def jalankan(agen, masukan, thread_id: str) -> Iterator[Peristiwa]:
                 if isinstance(pesan, AIMessage) and node == "model":
                     for p in pesan.tool_calls:
                         yield Peristiwa("tool", nama=p["name"], args=p["args"])
+                elif isinstance(pesan, AIMessage) and pesan.id not in sudah_tampil and teks_dari(pesan.content).strip():
+                    # Pesan AI yang ditulis node lain (mis. guardrail middleware yang menolak permintaan): tidak lewat
+                    # stream model, jadi keluarkan utuh agar tampil saat berjalan, bukan baru setelah halaman digambar ulang.
+                    yield Peristiwa("teks", teks_dari(pesan.content))
                 elif isinstance(pesan, ToolMessage):
                     yield Peristiwa("hasil_tool", teks=teks_dari(pesan.content), nama=pesan.name or "")
 
